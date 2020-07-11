@@ -4,7 +4,18 @@ from collections import Counter
 
 
 def check_permutation(str1, str2):
-    pass
+    if len(str1) != len(str2):
+        return False
+
+    counts = Counter(str1)
+
+    for char in str2:
+        counts[char] -= 1
+
+        if counts[char] < 0:
+            return False
+            
+    return True
 
 
 class Test(unittest.TestCase):

@@ -3,7 +3,25 @@ import unittest
 
 
 def urlify(string, length):
-    pass
+    char_list = list(string)
+    idx = len(char_list) - 1
+    s_idx = length - 1
+
+    while idx >= 0:
+        if string[s_idx] != ' ':
+            char_list[idx] = string[s_idx]
+            s_idx -= 1
+            idx -= 1
+        else:
+            char_list[idx] = '0'
+            idx -= 1
+            char_list[idx] = '2'
+            idx -= 1
+            char_list[idx] = '%'
+            idx -= 1
+            s_idx -= 1
+            
+    return char_list
 
 
 class Test(unittest.TestCase):

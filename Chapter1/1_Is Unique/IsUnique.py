@@ -3,7 +3,20 @@ import unittest
 
 
 def unique(string):
-    pass
+    char_set_size = 128
+    if len(string) > char_set_size:
+        return False
+
+    found_chars = [False for _ in range(char_set_size)]
+
+    for char in string:
+        idx = ord(char)
+        if found_chars[idx]:
+            return False
+        
+        found_chars[idx] = True
+
+    return True
 
 
 class Test(unittest.TestCase):

@@ -12,14 +12,11 @@ def pal_perm(phrase):
         
         lttr = char.lower()
         if lttr not in counts:
-            counts[lttr] = 1
-            odd_count += 1
-        else:
-            counts[lttr] += 1
-            if counts[lttr] % 2:
-                odd_count += 1
-            else: 
-                odd_count -= 1
+            counts[lttr] = 0
+
+        counts[lttr] += 1
+
+        odd_count += 1 if counts[lttr] % 2 else -1
 
     return odd_count == 0 or odd_count == 1
 

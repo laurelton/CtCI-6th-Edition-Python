@@ -3,25 +3,25 @@ import unittest
 
 
 def urlify(string, length):
-    char_list = list(string)
-    idx = len(char_list) - 1
-    s_idx = length - 1
+    reader = length - 1
+    writer = len(string) - 1
 
-    while idx >= 0:
-        if string[s_idx] != ' ':
-            char_list[idx] = string[s_idx]
-            s_idx -= 1
-            idx -= 1
+    while reader >= 0:
+        if string[reader] != ' ':
+            string[writer] = string[reader]
+            writer -= 1
+            reader -= 1
         else:
-            char_list[idx] = '0'
-            idx -= 1
-            char_list[idx] = '2'
-            idx -= 1
-            char_list[idx] = '%'
-            idx -= 1
-            s_idx -= 1
-            
-    return char_list
+            string[writer] = '0'
+            writer -= 1
+            string[writer] = '2'
+            writer -= 1
+            string[writer] = '%'
+            writer -= 1
+
+            reader -= 1
+
+    return string
 
 
 class Test(unittest.TestCase):

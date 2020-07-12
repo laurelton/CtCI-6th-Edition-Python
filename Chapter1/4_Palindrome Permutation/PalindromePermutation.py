@@ -3,20 +3,25 @@ import unittest
 
 
 def pal_perm(phrase):
-    pass
+    odd_count = 0
+    counts = {}
+    
+    for char in phrase:
+        if not char.isalpha():
+            continue
+        
+        lttr = char.lower()
+        if lttr not in counts:
+            counts[lttr] = 1
+            odd_count += 1
+        else:
+            counts[lttr] += 1
+            if counts[lttr] % 2:
+                odd_count += 1
+            else: 
+                odd_count -= 1
 
-def char_number(c):
-    a = ord('a')
-    z = ord('z')
-    A = ord('A')
-    Z = ord('Z')
-    val = ord(c)
-
-    if a <= val <= z:
-        return val - a
-    elif A <= val <= Z:
-        return val - A
-    return -1
+    return odd_count == 0 or odd_count == 1
 
 
 class Test(unittest.TestCase):

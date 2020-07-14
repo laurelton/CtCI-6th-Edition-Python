@@ -22,13 +22,9 @@ def one_away(s1, s2):
 
         idx = 0
         while idx < len(shorter):
-            l_idx = idx if diffs == 0 else idx + 1
-            if shorter[idx] != longer[l_idx]:
-                diffs += 1
-                if diffs > 1:
+            if shorter[idx] != longer[idx]:
+                if shorter[idx] != longer[idx + 1]:
                     return False
-
-                continue
 
             idx += 1
 

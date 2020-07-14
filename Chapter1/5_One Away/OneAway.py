@@ -3,7 +3,38 @@ import unittest
 
 
 def one_away(s1, s2):
-    pass
+    N1 = len(s1)
+    N2 = len(s2)
+    diffs = 0
+
+    if abs(N1 - N2) > 1:
+        return False
+
+    if N1 == N2:
+        for c1, c2 in zip(s1, s2):
+            if c1 != c2:
+                diffs += 1
+
+        return diffs < 2
+    else:
+        shorter = s1 if N1 < N2 else s2
+        longer  = s1 if N1 > N2 else s2  
+        
+        s_idx = 0
+        l_idx = 0
+        
+        while s_idx < len(shorter):
+            if shorter[s_idx] != longer[l_idx]:
+                diffs += 1
+                if diffs == 2:
+                    return False
+                l_idx += 1
+            else:
+                s_idx += 1
+                l_idx += 1
+
+    return True
+
 
 
 class Test(unittest.TestCase):
@@ -20,6 +51,7 @@ class Test(unittest.TestCase):
         ('pale', 'pale', True),
         ('pale', 'ple', True),
         ('ple', 'pale', True),
+        ('pae','pale',True),
         ('pale', 'bale', True),
         ('pale', 'bake', False),
         ('pale', 'pse', False),
@@ -29,7 +61,10 @@ class Test(unittest.TestCase):
         ('pale', 'pkle', True),
         ('pkle', 'pable', False),
         ('pal', 'palks', False),
-        ('palks', 'pal', False)
+        ('palks', 'pal', False),
+        ('walk', 'ball', False),
+        ('wlk', 'walk', True),
+        ('wlk', 'wall', False)
     ]
 
     def test_one_away(self):

@@ -18,20 +18,19 @@ def one_away(s1, s2):
         return diffs < 2
     else:
         shorter = s1 if N1 < N2 else s2
-        longer  = s1 if N1 > N2 else s2  
-        
-        s_idx = 0
-        l_idx = 0
-        
-        while s_idx < len(shorter):
-            if shorter[s_idx] != longer[l_idx]:
+        longer  = s1 if N1 > N2 else s2
+
+        idx = 0
+        while idx < len(shorter):
+            l_idx = idx if diffs == 0 else idx + 1
+            if shorter[idx] != longer[l_idx]:
                 diffs += 1
-                if diffs == 2:
+                if diffs > 1:
                     return False
-                l_idx += 1
-            else:
-                s_idx += 1
-                l_idx += 1
+
+                continue
+
+            idx += 1
 
     return True
 
